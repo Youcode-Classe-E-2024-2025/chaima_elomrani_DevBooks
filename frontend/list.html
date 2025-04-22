@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBook - Books Catalogue</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="flex h-screen overflow-hidden">
+      
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 sm:px-6 lg:px-8">
+                    <div class="flex items-center md:hidden">
+                        <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                        <h1 class="ml-3 text-lg font-bold text-gray-800">DevBook</h1>
+                    </div>
+                    <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
+                        <div class="max-w-lg w-full lg:max-w-xs">
+                            <label for="search" class="sr-only">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-search text-gray-400"></i>
+                                </div>
+                                <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search books, authors, categories..." type="search">
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 p-4 sm:p-6 lg:p-8">
+                <div class="max-w-7xl mx-auto">
+                    <div class="md:flex md:items-center md:justify-between mb-6">
+                        <div class="flex-1 min-w-0">
+                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                Books Catalogue
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Browse and discover technical books to add to your collection
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Filters Panel -->
+                    <div class="bg-white shadow rounded-lg mb-6">
+                        <div class="px-4 py-5 sm:p-6">
+                            
+                            
+                            <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                <div class="sm:col-span-2">
+                                    <label for="filter-category" class="block text-sm font-medium text-gray-700">Category</label>
+                                    <select id="filter-category" name="filter-category" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                        <option value="">All Categories</option>
+                                        <option value="programming">Programming</option>
+                                        <option value="design">UX/UI Design</option>
+                                        <option value="architecture">Architecture</option>
+                                        <option value="devops">DevOps</option>
+                                        <option value="data-science">Data Science</option>
+                                        <option value="machine-learning">Machine Learning</option>
+                                        <option value="web-development">Web Development</option>
+                                        <option value="mobile-development">Mobile Development</option>
+                                        <option value="cloud">Cloud Computing</option>
+                                        <option value="security">Security</option>
+                                    </select>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <label for="filter-year" class="block text-sm font-medium text-gray-700">Publication Year</label>
+                                    <select id="filter-year" name="filter-year" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                        <option value="">Any Year</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="older">2014 and older</option>
+                                    </select>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <label for="sort-by" class="block text-sm font-medium text-gray-700">Sort By</label>
+                                    <select id="sort-by" name="sort-by" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                        <option value="popularity-desc">Popularity (High to Low)</option>
+                                        <option value="popularity-asc">Popularity (Low to High)</option>
+                                        <option value="rating-desc">Rating (High to Low)</option>
+                                        <option value="rating-asc">Rating (Low to High)</option>
+                                        <option value="date-desc">Publication Date (Newest)</option>
+                                        <option value="date-asc">Publication Date (Oldest)</option>
+                                        <option value="title-asc">Title (A-Z)</option>
+                                        <option value="title-desc">Title (Z-A)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                <div class="sm:col-span-2">
+                                    <label for="filter-author" class="block text-sm font-medium text-gray-700">Author</label>
+                                    <input type="text" name="filter-author" id="filter-author" placeholder="Author name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <label for="filter-publisher" class="block text-sm font-medium text-gray-700">Publisher</label>
+                                    <input type="text" name="filter-publisher" id="filter-publisher" placeholder="Publisher name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                            
+                            </div>
+
+                            <div class="mt-6 flex justify-end">
+                                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Reset Filters
+                                </button>
+                                <button type="button" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Apply Filters
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+         
+
+                    <!-- All Books Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-medium text-gray-900">All Books</h3>
+                            <span class="text-sm text-gray-500">Showing 1-10 of 256 books</span>
+                        </div>
+
+                        <!-- Books List -->
+                        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                            <ul class="divide-y divide-gray-200">
+                                <!-- Book Item 1 -->
+                                <li>
+                                    <div class="px-4 py-4 sm:px-6">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-20 w-14 bg-gray-200 rounded overflow-hidden">
+                                                <!-- Book cover placeholder -->
+                                                <div class="h-full w-full flex items-center justify-center text-gray-500">
+                                                    <i class="fas fa-book text-xl"></i>
+                                                </div>
+                                            </div>
+                                            <div class="ml-4 flex-1">
+                                                <div class="flex items-center justify-between">
+                                                    <div>
+                                                        <h3 class="text-lg font-medium text-indigo-600 truncate">Building Microservices</h3>
+                                                        <p class="text-sm text-gray-500">Sam Newman</p>
+                                                    </div>
+                                                
+                                                </div>
+                                                <div class="mt-2 flex items-center justify-between">
+                                                    <div class="flex items-center">
+                                                       
+                                                        <span class="mx-2 text-gray-300">|</span>
+                                                        <span class="text-sm text-gray-500">354 pages</span>
+                                                        <span class="mx-2 text-gray-300">|</span>
+                                                        <span class="text-sm text-gray-500">2015</span>
+                                                    </div>
+                                                    <div class="flex items-center space-x-2">
+                                                        <button type="button" class="inline-flex items-center px-3 py-1.5 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                            <i class="fas fa-plus mr-1"></i> Add
+                                                        </button>
+                                                        <button type="button" class="inline-flex items-center px-3 py-1.5 border border-gray-300 rounded-md shadow-sm text-xs font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                            <i class="fas fa-bookmark mr-1"></i> Save
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <p class="text-sm text-gray-500 line-clamp-1">Distributed systems have become more fine-grained as organizations shift toward microservice architectures.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                              
+
+                            </ul>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-6 rounded-lg shadow">
+                            <div class="flex-1 flex justify-between sm:hidden">
+                                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Previous
+                                </a>
+                                <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                                    Next
+                                </a>
+                            </div>
+                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-700">
+                                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">256</span> results
+                                    </p>
+                                </div>
+                                <div>
+                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">Previous</span>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </a>
+                                        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            1
+                                        </a>
+                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            2
+                                        </a>
+                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            3
+                                        </a>
+                                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                                            ...
+                                        </span>
+                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            25
+                                        </a>
+                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                                            26
+                                        </a>
+                                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                            <span class="sr-only">Next</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
