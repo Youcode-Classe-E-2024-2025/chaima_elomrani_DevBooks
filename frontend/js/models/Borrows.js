@@ -8,4 +8,5 @@ class Borrows {
         this.date_limit = date_limit;
     };
 
-}
+};
+export default Borrows;

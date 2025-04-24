@@ -5,5 +5,7 @@ class users {
         this.email = email;
         this.password = password;
         this.role = role;
-    }
-}
+    };
+};
+
+export default users;

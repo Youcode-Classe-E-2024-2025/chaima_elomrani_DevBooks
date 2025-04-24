@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBook - Add Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-gray-800 border-r border-gray-200">
+                <div class="flex items-center justify-center h-16 px-4 bg-gray-900">
+                    <h1 class="text-xl font-bold text-white">DevBook</h1>
+                </div>
+                <div class="flex flex-col flex-1 overflow-y-auto">
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <a href="dashboard.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-home mr-3 text-gray-400"></i>
+                            Dashboard
+                        </a>
+                        <a href="book-list.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-book mr-3 text-gray-400"></i>
+                            My Books
+                        </a>
+                        <a href="catalogue.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-book-open mr-3 text-gray-400"></i>
+                            Catalogue
+                        </a>
+                        <a href="add-book.html" class="flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-700 rounded-md">
+                            <i class="fas fa-plus-circle mr-3 text-gray-300"></i>
+                            Add Book
+                        </a>
+                        <a href="categories.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-tags mr-3 text-gray-400"></i>
+                            Categories
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-bookmark mr-3 text-gray-400"></i>
+                            Reading List
+                        </a>
+                        <a href="settings.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                            <i class="fas fa-cog mr-3 text-gray-400"></i>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+                <div class="p-4 border-t border-gray-700">
+                    <a href="profile.html" class="flex items-center">
+                        <img class="w-10 h-10 rounded-full" src="" alt="User avatar">
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-white">John Developer</p>
+                            <p class="text-xs font-medium text-gray-400">View Profile</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 sm:px-6 lg:px-8">
+                    <div class="flex items-center md:hidden">
+                        <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                        <h1 class="ml-3 text-lg font-bold text-gray-800">DevBook</h1>
+                    </div>
+                    <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
+                        <div class="max-w-lg w-full lg:max-w-xs">
+                            <label for="search" class="sr-only">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-search text-gray-400"></i>
+                                </div>
+                                <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search books, authors, categories..." type="search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button type="button" class="flex-shrink-0 p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="sr-only">View notifications</span>
+                            <i class="fas fa-bell text-xl"></i>
+                        </button>
+                        <div class="ml-3 relative">
+                            <div>
+                                <button type="button" class="flex items-center max-w-xs text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="user-menu-button">
+                                    <span class="sr-only">Open user menu</span>
+                                    <img class="h-8 w-8 rounded-full" src="" alt="User avatar">
+                                </button>
+                            </div>
+                            <!-- Dropdown menu placeholder (you'll add JS for this) -->
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 p-4 sm:p-6 lg:p-8">
+                <div class="max-w-3xl mx-auto">
+                    <div class="md:flex md:items-center md:justify-between mb-6">
+                        <div class="flex-1 min-w-0">
+                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                Add New Book
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Add a new technical book to your collection
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Add Book Form -->
+                    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <form action="#" method="POST">
+                                <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-1">
+                                    <!-- Book Title -->
+                                    <div class="sm:col-span-4">
+                                        <label for="title" class="block text-sm font-medium text-gray-700">
+                                            Book Title <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="mt-1">
+                                            <input type="text" name="title" id="title" required class="shadow-sm block w-full sm:text-sm border-black  border rounded-md pb-2">
+                                        </div>
+                                    </div>
+
+                                    <!-- Author -->
+                                    <div class="sm:col-span-4">
+                                        <label for="author" class="block text-sm font-medium text-gray-700">
+                                            Author <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="mt-1">
+                                            <input type="text" name="author" id="author" required class="shadow-sm border-black p-2 border block w-full sm:text-sm  rounded-md">
+                                        </div>
+                                        <p class="mt-1 text-xs text-gray-500">For multiple authors, separate with commas</p>
+                                    </div>
+
+
+                                    <!-- Category -->
+                                    <div class="sm:col-span-3">
+                                        <label for="category" class="block text-sm font-medium text-gray-700">
+                                            Category <span class="text-red-500">*</span>
+                                        </label>
+                                        <div class="mt-1">
+                                            <select id="category" name="category" required class="shadow-sm p-2 block w-full sm:text-sm border-black  border rounded-md">
+                                                <option value="">Select a category</option>
+                                                <option value="programming">Programming</option>
+                                                <option value="design">UX/UI Design</option>
+                                                <option value="architecture">Architecture</option>
+                                                <option value="devops">DevOps</option>
+                                                <option value="data-science">Data Science</option>
+                                                <option value="machine-learning">Machine Learning</option>
+                                                <option value="web-development">Web Development</option>
+                                                <option value="mobile-development">Mobile Development</option>
+                                                <option value="cloud">Cloud Computing</option>
+                                                <option value="security">Security</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- Description -->
+                                    <div class="sm:col-span-6">
+                                        <label for="description" class="block text-sm font-medium text-gray-700">
+                                            Description
+                                        </label>
+                                        <div class="mt-1">
+                                            <textarea id="description" name="description" rows="5" class="shadow-sm border-black  border block w-full sm:text-sm  rounded-md"></textarea>
+                                        </div>
+                                        <p class="mt-1 text-xs text-gray-500">Brief description of the book's content</p>
+                                    </div>
+
+                                    <!-- Reading Status -->
+                                    <div class="sm:col-span-6">
+                                        <fieldset>
+                                            <legend class="text-sm font-medium text-gray-700">Reading Status</legend>
+                                            <div class="mt-2 space-y-4">
+                                                <select id="status" name="status" required class="shadow-sm p-2 block w-full sm:text-sm border-black  border rounded-md">
+                                                    <option value="">Select a status</option>
+                                                </select>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                </div>
+
+                                <!-- Form Actions -->
+                                <div class="mt-8 flex justify-end">
+                                    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Add Book
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

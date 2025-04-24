@@ -7,6 +7,6 @@ class Books {
         this.category_id = category_id;
         this.read_status = read_status;
         this.dispo_status = dispo_status;
-    }
-
-}
+    };
+};
+export default Books;
