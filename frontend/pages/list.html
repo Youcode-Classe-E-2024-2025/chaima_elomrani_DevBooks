@@ -3,239 +3,786 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevBook - Books Catalogue</title>
+    <title>BookShelf - Manage Your Books</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-gray-50 font-sans">
-    <div class="flex h-screen overflow-hidden">
-      
-        <!-- Main Content -->
-        <div class="flex flex-col flex-1 overflow-hidden">
-            <!-- Top Navigation -->
-            <header class="bg-white shadow-sm">
-                <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 sm:px-6 lg:px-8">
-                    <div class="flex items-center md:hidden">
-                        <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none">
-                            <i class="fas fa-bars text-xl"></i>
-                        </button>
-                        <h1 class="ml-3 text-lg font-bold text-gray-800">DevBook</h1>
+    <!-- Main Container -->
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <div class="flex-shrink-0 flex items-center">
+                            <i class="fas fa-book-open text-indigo-600 text-2xl mr-2"></i>
+                            <h1 class="text-xl font-bold text-gray-900">BookShelf</h1>
+                        </div>
                     </div>
-                    <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
-                        <div class="max-w-lg w-full lg:max-w-xs">
-                            <label for="search" class="sr-only">Search</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-search text-gray-400"></i>
-                                </div>
-                                <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search books, authors, categories..." type="search">
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <input id="search" type="text" placeholder="Search books..." class="bg-gray-100 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white w-64">
+                            <div class="absolute left-3 top-2.5 text-gray-400">
+                                <i class="fas fa-search"></i>
                             </div>
                         </div>
                     </div>
-                 
                 </div>
-            </header>
+            </div>
+        </header>
 
-            <!-- Main Content Area -->
-            <main class="flex-1 overflow-y-auto bg-gray-50 p-4 sm:p-6 lg:p-8">
-                <div class="max-w-7xl mx-auto">
-                    <div class="md:flex md:items-center md:justify-between mb-6">
-                        <div class="flex-1 min-w-0">
-                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                                Books Catalogue
-                            </h2>
-                            <p class="mt-1 text-sm text-gray-500">
-                                Browse and discover technical books to add to your collection
-                            </p>
-                        </div>
-                    </div>
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">My Book Collection</h2>
+                    <p class="mt-1 text-sm text-gray-600">Manage and organize your book collection</p>
+                </div>
 
-                    <!-- Advanced Filters Panel -->
-                    <div class="bg-white shadow rounded-lg mb-6">
-                        <div class="px-4 py-5 sm:p-6">
+                <div class="lg:flex lg:gap-6">
+                    <!-- Sidebar with filters -->
+                    <div class="lg:w-1/4">
+                        <div class="bg-white rounded-lg shadow mb-6 p-4">
+                            <h3 class="font-medium text-gray-900 mb-3">Filters</h3>
                             
-                            
-                            <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                <div class="sm:col-span-2">
-                                    <label for="filter-category" class="block text-sm font-medium text-gray-700">Category</label>
-                                    <select id="filter-category" name="filter-category" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                        <option value="">All Categories</option>
-                                        <option value="programming">Programming</option>
-                                        <option value="design">UX/UI Design</option>
-                                        <option value="architecture">Architecture</option>
-                                        <option value="devops">DevOps</option>
-                                        <option value="data-science">Data Science</option>
-                                        <option value="machine-learning">Machine Learning</option>
-                                        <option value="web-development">Web Development</option>
-                                        <option value="mobile-development">Mobile Development</option>
-                                        <option value="cloud">Cloud Computing</option>
-                                        <option value="security">Security</option>
-                                    </select>
-                                </div>
-
-                                <div class="sm:col-span-2">
-                                    <label for="filter-year" class="block text-sm font-medium text-gray-700">Publication Year</label>
-                                    <select id="filter-year" name="filter-year" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                        <option value="">Any Year</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2016">2016</option>
-                                        <option value="2015">2015</option>
-                                        <option value="older">2014 and older</option>
-                                    </select>
-                                </div>
-
-                                <div class="sm:col-span-2">
-                                    <label for="sort-by" class="block text-sm font-medium text-gray-700">Sort By</label>
-                                    <select id="sort-by" name="sort-by" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                        <option value="popularity-desc">Popularity (High to Low)</option>
-                                        <option value="popularity-asc">Popularity (Low to High)</option>
-                                        <option value="rating-desc">Rating (High to Low)</option>
-                                        <option value="rating-asc">Rating (Low to High)</option>
-                                        <option value="date-desc">Publication Date (Newest)</option>
-                                        <option value="date-asc">Publication Date (Oldest)</option>
-                                        <option value="title-asc">Title (A-Z)</option>
-                                        <option value="title-desc">Title (Z-A)</option>
-                                    </select>
-                                </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                                <select id="category-filter" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="">All Categories</option>
+                                    <option value="fiction">Fiction</option>
+                                    <option value="non-fiction">Non-Fiction</option>
+                                    <option value="programming">Programming</option>
+                                    <option value="design">Design</option>
+                                    <option value="business">Business</option>
+                                    <option value="science">Science</option>
+                                </select>
                             </div>
-
-                            <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                <div class="sm:col-span-2">
-                                    <label for="filter-author" class="block text-sm font-medium text-gray-700">Author</label>
-                                    <input type="text" name="filter-author" id="filter-author" placeholder="Author name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                </div>
-
-                                <div class="sm:col-span-2">
-                                    <label for="filter-publisher" class="block text-sm font-medium text-gray-700">Publisher</label>
-                                    <input type="text" name="filter-publisher" id="filter-publisher" placeholder="Publisher name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                </div>
-
                             
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Year Published</label>
+                                <select id="year-filter" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="">Any Year</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="older">2019 and older</option>
+                                </select>
                             </div>
-
-                            <div class="mt-6 flex justify-end">
-                                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Reading Status</label>
+                                <select id="status-filter" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="">All Statuses</option>
+                                    <option value="unread">Unread</option>
+                                    <option value="reading">Currently Reading</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="dnf">Did Not Finish</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex justify-end">
+                                <button id="reset-filters" class="text-sm text-indigo-600 hover:text-indigo-500">
                                     Reset Filters
                                 </button>
-                                <button type="button" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Apply Filters
-                                </button>
                             </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow p-4">
+                            <h3 class="font-medium text-gray-900 mb-3">Sort By</h3>
+                            <select id="sort-books" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="title-asc">Title (A-Z)</option>
+                                <option value="title-desc">Title (Z-A)</option>
+                                <option value="author-asc">Author (A-Z)</option>
+                                <option value="author-desc">Author (Z-A)</option>
+                                <option value="year-desc">Year (Newest First)</option>
+                                <option value="year-asc">Year (Oldest First)</option>
+                            </select>
                         </div>
                     </div>
 
-         
-
-                    <!-- All Books Section -->
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-medium text-gray-900">All Books</h3>
-                            <span class="text-sm text-gray-500">Showing 1-10 of 256 books</span>
+                    <!-- Main content area -->
+                    <div class="lg:w-3/4 mt-6 lg:mt-0">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-600" id="books-count">Showing 5 books</span>
+                            <button id="add-book-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                                <i class="fas fa-plus mr-2"></i> Add New Book
+                            </button>
                         </div>
 
                         <!-- Books List -->
-                        <div id="books-list" class="bg-white shadow overflow-hidden sm:rounded-lg">
-                            <ul class="divide-y divide-gray-200">
-                                <!-- Book Item 1 -->
-                                <li>
-                                    <div class="px-4 py-4 sm:px-6">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-20 w-14 bg-gray-200 rounded overflow-hidden">
-                                                <!-- Book cover placeholder -->
-                                                <div class="h-full w-full flex items-center justify-center text-gray-500">
-                                                    <i class="fas fa-book text-xl"></i>
+                        <div class="space-y-4" id="books-list">
+                            <!-- Book Item 1 -->
+                            <div class="bg-white rounded-lg shadow overflow-hidden">
+                                <div class="p-4 sm:p-5">
+                                    <div class="flex">
+                                        <div class="h-24 w-16 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center">
+                                            <i class="fas fa-book text-gray-400 text-xl"></i>
+                                        </div>
+                                        <div class="ml-4 flex-1">
+                                            <div class="flex justify-between">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-indigo-600">Clean Code</h3>
+                                                    <p class="text-sm text-gray-600">Robert C. Martin</p>
+                                                </div>
+                                                <div class="flex space-x-2">
+                                                    <button class="edit-book-btn text-gray-500 hover:text-indigo-600" data-id="1">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="delete-book-btn text-gray-500 hover:text-red-600" data-id="1">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <div class="ml-4 flex-1">
-                                                <div class="flex items-center justify-between">
-                                                    <div>
-                                                        <h3 class="text-lg font-medium text-indigo-600 truncate">Building Microservices</h3>
-                                                        <p class="text-sm text-gray-500">Sam Newman</p>
-                                                    </div>
-                                                
-                                                </div>
-                                                <span class="text-sm text-green-500">status</span>
-                                                <div class=" flex items-center justify-between">
-                                                    <div class=" flex items-center">
-                                                        <p class="text-sm text-gray-500 line-clamp-1">Distributed systems have become more fine-grained as organizations shift toward microservice architectures.</p>
-                                                    </div>
-                                                    <div class="flex items-center space-x-2">
-                                                        <button type="button" class="inline-flex items-center px-3 py-1.5 border border-transparent rounded-md shadow-sm text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                            <i class="fas fa-plus mr-1"></i> Add
-                                                        </button>
-                                                        <button type="button" class="inline-flex items-center px-3 py-1.5 border border-gray-300 rounded-md shadow-sm text-xs font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                            <i class="fas fa-bookmark mr-1"></i> Save
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                            <div class="mt-1 flex items-center">
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Completed
+                                                </span>
+                                                <span class="ml-3 text-sm text-gray-500">2008</span>
+                                                <span class="ml-3 text-sm text-gray-500">Programming</span>
                                             </div>
+                                            <p class="mt-2 text-sm text-gray-500 line-clamp-2">
+                                                A handbook of agile software craftsmanship that has helped countless programmers become better developers.
+                                            </p>
                                         </div>
                                     </div>
-                                </li>
-
-                              
-
-                            </ul>
-                        </div>
-
-                        <!-- Pagination -->
-                        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-6 rounded-lg shadow">
-                            <div class="flex-1 flex justify-between sm:hidden">
-                                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                                    Previous
-                                </a>
-                                <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                                    Next
-                                </a>
-                            </div>
-                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                                <div>
-                                    <p class="text-sm text-gray-700">
-                                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">256</span> results
-                                    </p>
                                 </div>
-                                <div>
-                                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                            <span class="sr-only">Previous</span>
-                                            <i class="fas fa-chevron-left"></i>
-                                        </a>
-                                        <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            1
-                                        </a>
-                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            2
-                                        </a>
-                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            3
-                                        </a>
-                                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-                                            ...
-                                        </span>
-                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            25
-                                        </a>
-                                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            26
-                                        </a>
-                                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                            <span class="sr-only">Next</span>
-                                            <i class="fas fa-chevron-right"></i>
-                                        </a>
-                                    </nav>
+                            </div>
+
+                            <!-- Book Item 2 -->
+                            <div class="bg-white rounded-lg shadow overflow-hidden">
+                                <div class="p-4 sm:p-5">
+                                    <div class="flex">
+                                        <div class="h-24 w-16 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center">
+                                            <i class="fas fa-book text-gray-400 text-xl"></i>
+                                        </div>
+                                        <div class="ml-4 flex-1">
+                                            <div class="flex justify-between">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-indigo-600">Designing Data-Intensive Applications</h3>
+                                                    <p class="text-sm text-gray-600">Martin Kleppmann</p>
+                                                </div>
+                                                <div class="flex space-x-2">
+                                                    <button class="edit-book-btn text-gray-500 hover:text-indigo-600" data-id="2">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="delete-book-btn text-gray-500 hover:text-red-600" data-id="2">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="mt-1 flex items-center">
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                    Reading
+                                                </span>
+                                                <span class="ml-3 text-sm text-gray-500">2017</span>
+                                                <span class="ml-3 text-sm text-gray-500">Programming</span>
+                                            </div>
+                                            <p class="mt-2 text-sm text-gray-500 line-clamp-2">
+                                                This book examines the ways data-intensive systems are built in the modern world with practical advice.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Book Item 3 -->
+                            <div class="bg-white rounded-lg shadow overflow-hidden">
+                                <div class="p-4 sm:p-5">
+                                    <div class="flex">
+                                        <div class="h-24 w-16 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center">
+                                            <i class="fas fa-book text-gray-400 text-xl"></i>
+                                        </div>
+                                        <div class="ml-4 flex-1">
+                                            <div class="flex justify-between">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-indigo-600">The Design of Everyday Things</h3>
+                                                    <p class="text-sm text-gray-600">Don Norman</p>
+                                                </div>
+                                                <div class="flex space-x-2">
+                                                    <button class="edit-book-btn text-gray-500 hover:text-indigo-600" data-id="3">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="delete-book-btn text-gray-500 hover:text-red-600" data-id="3">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="mt-1 flex items-center">
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    Unread
+                                                </span>
+                                                <span class="ml-3 text-sm text-gray-500">2013</span>
+                                                <span class="ml-3 text-sm text-gray-500">Design</span>
+                                            </div>
+                                            <p class="mt-2 text-sm text-gray-500 line-clamp-2">
+                                                A powerful primer on how and why some products satisfy customers while others only frustrate them.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Book Item 4 -->
+                            <div class="bg-white rounded-lg shadow overflow-hidden">
+                                <div class="p-4 sm:p-5">
+                                    <div class="flex">
+                                        <div class="h-24 w-16 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center">
+                                            <i class="fas fa-book text-gray-400 text-xl"></i>
+                                        </div>
+                                        <div class="ml-4 flex-1">
+                                            <div class="flex justify-between">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-indigo-600">Atomic Habits</h3>
+                                                    <p class="text-sm text-gray-600">James Clear</p>
+                                                </div>
+                                                <div class="flex space-x-2">
+                                                    <button class="edit-book-btn text-gray-500 hover:text-indigo-600" data-id="4">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="delete-book-btn text-gray-500 hover:text-red-600" data-id="4">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="mt-1 flex items-center">
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Completed
+                                                </span>
+                                                <span class="ml-3 text-sm text-gray-500">2018</span>
+                                                <span class="ml-3 text-sm text-gray-500">Self-help</span>
+                                            </div>
+                                            <p class="mt-2 text-sm text-gray-500 line-clamp-2">
+                                                An easy & proven way to build good habits & break bad ones with practical strategies.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Book Item 5 -->
+                            <div class="bg-white rounded-lg shadow overflow-hidden">
+                                <div class="p-4 sm:p-5">
+                                    <div class="flex">
+                                        <div class="h-24 w-16 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center">
+                                            <i class="fas fa-book text-gray-400 text-xl"></i>
+                                        </div>
+                                        <div class="ml-4 flex-1">
+                                            <div class="flex justify-between">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-indigo-600">The Pragmatic Programmer</h3>
+                                                    <p class="text-sm text-gray-600">David Thomas, Andrew Hunt</p>
+                                                </div>
+                                                <div class="flex space-x-2">
+                                                    <button class="edit-book-btn text-gray-500 hover:text-indigo-600" data-id="5">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="delete-book-btn text-gray-500 hover:text-red-600" data-id="5">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="mt-1 flex items-center">
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                    Did Not Finish
+                                                </span>
+                                                <span class="ml-3 text-sm text-gray-500">2019</span>
+                                                <span class="ml-3 text-sm text-gray-500">Programming</span>
+                                            </div>
+                                            <p class="mt-2 text-sm text-gray-500 line-clamp-2">
+                                                A collection of concepts, techniques, and practical advice for aspiring and experienced professional programmers.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sm text-gray-500">
+                    &copy; 2025 BookShelf. All rights reserved.
+                </p>
+            </div>
+        </footer>
+
+        <!-- Book Form Modal -->
+        <div id="book-modal" class="fixed inset-0 z-10 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="w-full">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                    Add New Book
+                                </h3>
+                                <form id="book-form" class="mt-4">
+                                    <input type="hidden" id="book-id" value="">
+                                    <div class="mb-4">
+                                        <label for="book-title" class="block text-sm font-medium text-gray-700">Title</label>
+                                        <input type="text" id="book-title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="book-author" class="block text-sm font-medium text-gray-700">Author</label>
+                                        <input type="text" id="book-author" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="mb-4">
+                                            <label for="book-year" class="block text-sm font-medium text-gray-700">Year Published</label>
+                                            <input type="number" id="book-year" min="1000" max="2025" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="book-category" class="block text-sm font-medium text-gray-700">Category</label>
+                                            <select id="book-category" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+                                                <option value="">Select Category</option>
+                                                <option value="fiction">Fiction</option>
+                                                <option value="non-fiction">Non-Fiction</option>
+                                                <option value="programming">Programming</option>
+                                                <option value="design">Design</option>
+                                                <option value="business">Business</option>
+                                                <option value="science">Science</option>
+                                                <option value="self-help">Self-help</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="book-status" class="block text-sm font-medium text-gray-700">Reading Status</label>
+                                        <select id="book-status" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+                                            <option value="unread">Unread</option>
+                                            <option value="reading">Currently Reading</option>
+                                            <option value="completed">Completed</option>
+                                            <option value="dnf">Did Not Finish</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="book-description" class="block text-sm font-medium text-gray-700">Description</label>
+                                        <textarea id="book-description" rows="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button type="button" id="save-book-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                            Save
+                        </button>
+                        <button type="button" id="cancel-book-btn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-modal" class="fixed inset-0 z-10 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <i class="fas fa-exclamation-triangle text-red-600"></i>
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                    Delete Book
+                                </h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">
+                                        Are you sure you want to delete this book? This action cannot be undone.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button type="button" id="confirm-delete-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                            Delete
+                        </button>
+                        <button type="button" id="cancel-delete-btn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</body>
-</html>
+
+    <script>
+        // Sample book data
+        let books = [
+            {
+                id: 1,
+                title: 'Clean Code',
+                author: 'Robert C. Martin',
+                year: 2008,
+                category: 'programming',
+                status: 'completed',
+                description: 'A handbook of agile software craftsmanship that has helped countless programmers become better developers.'
+            },
+            {
+                id: 2,
+                title: 'Designing Data-Intensive Applications',
+                author: 'Martin Kleppmann',
+                year: 2017,
+                category: 'programming',
+                status: 'reading',
+                description: 'This book examines the ways data-intensive systems are built in the modern world with practical advice.'
+            },
+            {
+                id: 3,
+                title: 'The Design of Everyday Things',
+                author: 'Don Norman',
+                year: 2013,
+                category: 'design',
+                status: 'unread',
+                description: 'A powerful primer on how and why some products satisfy customers while others only frustrate them.'
+            },
+            {
+                id: 4,
+                title: 'Atomic Habits',
+                author: 'James Clear',
+                year: 2018,
+                category: 'self-help',
+                status: 'completed',
+                description: 'An easy & proven way to build good habits & break bad ones with practical strategies.'
+            },
+            {
+                id: 5,
+                title: 'The Pragmatic Programmer',
+                author: 'David Thomas, Andrew Hunt',
+                year: 2019,
+                category: 'programming',
+                status: 'dnf',
+                description: 'A collection of concepts, techniques, and practical advice for aspiring and experienced professional programmers.'
+            }
+        ];
+
+        // DOM Elements
+        const booksList = document.getElementById('books-list');
+        const booksCount = document.getElementById('books-count');
+        const searchInput = document.getElementById('search');
+        const categoryFilter = document.getElementById('category-filter');
+        const yearFilter = document.getElementById('year-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const sortBooks = document.getElementById('sort-books');
+        const resetFiltersBtn = document.getElementById('reset-filters');
+        const addBookBtn = document.getElementById('add-book-btn');
+        const bookModal = document.getElementById('book-modal');
+        const bookForm = document.getElementById('book-form');
+        const bookIdInput = document.getElementById('book-id');
+        const bookTitleInput = document.getElementById('book-title');
+        const bookAuthorInput = document.getElementById('book-author');
+        const bookYearInput = document.getElementById('book-year');
+        const bookCategoryInput = document.getElementById('book-category');
+        const bookStatusInput = document.getElementById('book-status');
+        const bookDescriptionInput = document.getElementById('book-description');
+        const saveBookBtn = document.getElementById('save-book-btn');
+        const cancelBookBtn = document.getElementById('cancel-book-btn');
+        const deleteBookBtn = document.getElementById('delete-book-btn');
+        const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+        const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+        const deleteBookModal = document.getElementById('delete-book-modal');
+
+// Utility for generating unique IDs
+const generateId = () => {
+    return Math.max(...books.map(book => book.id), 0) + 1;
+};
+
+// Book Status Color Classes
+const statusColors = {
+    'unread': 'bg-blue-100 text-blue-800',
+    'reading': 'bg-yellow-100 text-yellow-800',
+    'completed': 'bg-green-100 text-green-800',
+    'dnf': 'bg-red-100 text-red-800'
+};
+
+// Format status labels for display
+const formatStatus = (status) => {
+    const statusMap = {
+        'unread': 'Unread',
+        'reading': 'Currently Reading',
+        'completed': 'Completed',
+        'dnf': 'Did Not Finish'
+    };
+    return statusMap[status] || status;
+};
+
+// Format category labels for display
+const formatCategory = (category) => {
+    return category.charAt(0).toUpperCase() + category.slice(1);
+};
+
+// Create HTML for a book item
+const createBookElement = (book) => {
+    const bookElement = document.createElement('div');
+    bookElement.className = 'bg-white rounded-lg shadow overflow-hidden';
+    
+    const statusClass = statusColors[book.status] || 'bg-gray-100 text-gray-800';
+    
+    bookElement.innerHTML = `
+        <div class="p-4 sm:p-5">
+            <div class="flex">
+                <div class="h-24 w-16 bg-gray-200 rounded flex-shrink-0 flex items-center justify-center">
+                    <i class="fas fa-book text-gray-400 text-xl"></i>
+                </div>
+                <div class="ml-4 flex-1">
+                    <div class="flex justify-between">
+                        <div>
+                            <h3 class="text-lg font-medium text-indigo-600">${book.title}</h3>
+                            <p class="text-sm text-gray-600">${book.author}</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="edit-book-btn text-gray-500 hover:text-indigo-600" data-id="${book.id}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="delete-book-btn text-gray-500 hover:text-red-600" data-id="${book.id}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-1 flex items-center">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusClass}">
+                            ${formatStatus(book.status)}
+                        </span>
+                        <span class="ml-3 text-sm text-gray-500">${book.year}</span>
+                        <span class="ml-3 text-sm text-gray-500">${formatCategory(book.category)}</span>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500 line-clamp-2">
+                        ${book.description || ''}
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+
+    return bookElement;
+};
+
+// Render books on the page
+const renderBooks = (booksToRender) => {
+    booksList.innerHTML = '';
+    
+    if (booksToRender.length === 0) {
+        const emptyState = document.createElement('div');
+        emptyState.className = 'text-center py-8';
+        emptyState.innerHTML = `
+            <i class="fas fa-book text-gray-300 text-5xl mb-4"></i>
+            <p class="text-gray-500">No books found matching your criteria.</p>
+            <button id="clear-filters" class="mt-4 text-indigo-600 hover:text-indigo-500">Clear filters</button>
+        `;
+        booksList.appendChild(emptyState);
+        
+        // Add event listener for clear filters button
+        document.getElementById('clear-filters').addEventListener('click', clearFilters);
+    } else {
+        booksToRender.forEach(book => {
+            booksList.appendChild(createBookElement(book));
+        });
+    }
+    
+    booksCount.textContent = `Showing ${booksToRender.length} book${booksToRender.length !== 1 ? 's' : ''}`;
+    
+    // Add event listeners to the new book elements
+    attachBookEventListeners();
+};
+
+// Filter books based on search and filter criteria
+const filterBooks = () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const categoryValue = categoryFilter.value;
+    const yearValue = yearFilter.value;
+    const statusValue = statusFilter.value;
+    
+    // Apply filters
+    let filteredBooks = books.filter(book => {
+        // Search term filter
+        const matchesSearch = book.title.toLowerCase().includes(searchTerm) || 
+        book.author.toLowerCase().includes(searchTerm) ||
+        book.description.toLowerCase().includes(searchTerm);
+        
+        // Category filter
+        const matchesCategory = categoryValue === '' || book.category === categoryValue;
+        
+        // Year filter
+        let matchesYear = yearValue === '';
+        if (yearValue === 'older') {
+            matchesYear = book.year < 2019;
+        } else if (yearValue !== '') {
+            matchesYear = book.year === parseInt(yearValue);
+        }
+        
+        // Status filter
+        const matchesStatus = statusValue === '' || book.status === statusValue;
+        
+        return matchesSearch && matchesCategory && matchesYear && matchesStatus;
+    });
+    
+    // Apply sorting
+    const sortOption = sortBooks.value;
+    filteredBooks.sort((a, b) => {
+        switch (sortOption) {
+            case 'title-asc':
+                return a.title.localeCompare(b.title);
+            case 'title-desc':
+                return b.title.localeCompare(a.title);
+            case 'author-asc':
+                return a.author.localeCompare(b.author);
+            case 'author-desc':
+                return b.author.localeCompare(a.author);
+            case 'year-desc':
+                return b.year - a.year;
+            case 'year-asc':
+                return a.year - b.year;
+            default:
+                return 0;
+        }
+    });
+    
+    renderBooks(filteredBooks);
+};
+
+// Clear all filters
+const clearFilters = () => {
+    searchInput.value = '';
+    categoryFilter.value = '';
+    yearFilter.value = '';
+    statusFilter.value = '';
+    sortBooks.value = 'title-asc';
+    filterBooks();
+};
+
+// Open book modal for adding/editing
+const openBookModal = (isEdit = false, bookId = null) => {
+    bookModal.classList.remove('hidden');
+    
+    if (isEdit && bookId) {
+        const book = books.find(b => b.id === parseInt(bookId));
+        if (book) {
+            document.getElementById('modal-title').textContent = 'Edit Book';
+            bookIdInput.value = book.id;
+            bookTitleInput.value = book.title;
+            bookAuthorInput.value = book.author;
+            bookYearInput.value = book.year;
+            bookCategoryInput.value = book.category;
+            bookStatusInput.value = book.status;
+            bookDescriptionInput.value = book.description || '';
+        }
+    } else {
+        document.getElementById('modal-title').textContent = 'Add New Book';
+        bookForm.reset();
+        bookIdInput.value = '';
+    }
+};
+
+// Close book modal
+const closeBookModal = () => {
+    bookModal.classList.add('hidden');
+    bookForm.reset();
+};
+
+// Save book (add or update)
+const saveBook = () => {
+    const id = bookIdInput.value ? parseInt(bookIdInput.value) : generateId();
+    const title = bookTitleInput.value;
+    const author = bookAuthorInput.value;
+    const year = parseInt(bookYearInput.value);
+    const category = bookCategoryInput.value;
+    const status = bookStatusInput.value;
+    const description = bookDescriptionInput.value;
+    
+    if (!title || !author || !year || !category || !status) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    const bookData = {
+        id,
+        title,
+        author,
+        year,
+        category,
+        status,
+        description
+    };
+    
+    // Check if editing or adding
+    const bookIndex = books.findIndex(b => b.id === id);
+    if (bookIndex !== -1) {
+        // Update existing book
+        books[bookIndex] = bookData;
+    } else {
+        // Add new book
+        books.push(bookData);
+    }
+    
+    closeBookModal();
+    filterBooks();
+};
+
+// Open delete confirmation modal
+const openDeleteModal = (bookId) => {
+    deleteModal.classList.remove('hidden');
+    confirmDeleteBtn.dataset.id = bookId;
+};
+
+// Close delete confirmation modal
+const closeDeleteModal = () => {
+    deleteModal.classList.add('hidden');
+};
+
+// Delete book
+const deleteBook = (bookId) => {
+    const id = parseInt(bookId);
+    books = books.filter(book => book.id !== id);
+    closeDeleteModal();
+    filterBooks();
+};
+
+// Attach event listeners to book elements
+const attachBookEventListeners = () => {
+    document.querySelectorAll('.edit-book-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const bookId = e.currentTarget.dataset.id;
+            openBookModal(true, bookId);
+        });
+    });
+    
+    document.querySelectorAll('.delete-book-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const bookId = e.currentTarget.dataset.id;
+            openDeleteModal(bookId);
+        });
+    });
+};
+
+// Event Listeners
+searchInput.addEventListener('input', filterBooks);
+categoryFilter.addEventListener('change', filterBooks);
+yearFilter.addEventListener('change', filterBooks);
+statusFilter.addEventListener('change', filterBooks);
+sortBooks.addEventListener('change', filterBooks);
+resetFiltersBtn.addEventListener('click', clearFilters);
+
+addBookBtn.addEventListener('click', () => openBookModal());
+saveBookBtn.addEventListener('click', saveBook);
+cancelBookBtn.addEventListener('click', closeBookModal);
+
+confirmDeleteBtn.addEventListener('click', (e) => {
+    const bookId = e.currentTarget.dataset.id;
+    deleteBook(bookId);
+});
+cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+
+// Initialize the app
+filterBooks();
