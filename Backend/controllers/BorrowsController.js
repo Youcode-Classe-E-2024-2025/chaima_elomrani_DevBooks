@@ -1,97 +1,59 @@
-const path = require('path');
-const Book = require('../models/Book');
+const Emprunt = require('../models/Emprunt');
 
 exports.getAll = (req, res) => {
-    Book.getAll((err, books) => {
+    Emprunt.getAll((err, rslt) => {
         if (err) {
             console.error(err);
             return res.status(500).send("erreur");
         }
-        res.json(books);
+        res.json(rslt);
+    });
+};
+
+exports.getByUserId = (req, res) => {
+    const { id } = req.params;
+
+    Emprunt.findByUserId(id, (err, rslt) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send("erreur");
+        }
+
+        res.json(rslt);
     });
 };
 
 exports.create = (req, res) => {
-    const error = validate(req.body);
+    const { user_id, book_id } = req.body;
+    const date_emprunt = new Date();
+    const date_limit = new Date();
+    date_limit.setDate(date_emprunt.getDate() + 15);
 
-    if (error) {
-        return res.status(400).send(error);
-    }
-
-    const { titre, description, auteur, category_id } = req.body;
-    const book = new Book(null, titre, description, auteur, category_id);
-
-    book.save((err, rslt) => {
-        if (err) {
-
-            if (err.message === 'titre existant') {
-                return res.status(400).send('titre existant');
-            }
-
-            console.error(err);
-            return res.status(500).send("erreur");
-        }
-        res.send("livre ajouté");
-    });
-
-};
-
-exports.getById = (req, res) => {
-    const { id } = req.params;
-
-    Book.findById(id, (err, rslt) => {
-        if (err) {
-            console.log(err);
-            return res.status(500).send("erreur");
-        }
-
-        if (!rslt) return res.status(404).send('livre introuvable');
-        res.json(rslt);
-    });
-}
-
-exports.update = (req, res) => {
-    const error = validate(req.body);
-
-    if (error) {
-        return res.status(400).send(error);
-    }
-
-    const { id } = req.params;
-    const { titre, description, auteur, category_id, read_status, dispo_status } = req.body;
-
-    const book = new Book(id, titre, description, auteur, category_id, read_status, dispo_status);
-
-    book.update((err, rslt) => {
+    const emprunt = new Emprunt(null, user_id, book_id, date_emprunt, null, date_limit);
+    emprunt.save((err, rslt) => {
         if (err) {
             console.error(err);
             return res.status(500).send("erreur");
         }
-        res.send("book updated");
+        res.send("emprunt ajoutéée");
     });
 };
 
-exports.delete = (req, res) => {
+exports.return = (req, res) => {
     const { id } = req.params;
+    const date_retour = new Date();
 
-    Book.delete(id, (err, rslt) => {
+    Emprunt.return(id, date_retour, (err, rslt) => {
         if (err) {
-
-            if (err.message === 'titre existant') {
-                return res.status(400).send('titre existant');
-            }
-
             console.error(err);
             return res.status(500).send("erreur");
         }
-        res.send("supprimé");
+        res.send("returned");
     });
 };
 
-exports.filterByCategory = (req, res) => {
-    const { id } = req.params;
-
-    Book.filterByCategory(id, (err, rslt) => {
+exports.getOverdue = (req, res) => {
+    Emprunt.getOverdue((err, rslt) => {
         if (err) {
             console.error(err);
             return res.status(500).send("erreur");
@@ -99,38 +61,3 @@ exports.filterByCategory = (req, res) => {
         res.json(rslt);
     });
 };
-
-exports.search = (req, res) => {
-    const { q } = req.query;
-
-    Book.search(q, (err, rslt) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send("erreur");
-        }
-        res.json(rslt);
-    });
-};
-
-function validate(data) {
-    const { titre, description, auteur, category_id } = data;
-
-    if (!titre || !description || !auteur || !category_id) {
-        return "tous les champs sont obligatoires";
-    }
-
-    if (titre.trim().length < 2 || typeof titre !== 'string') {
-        return "le titre doit avoir au min 2 caractères";
-    }
-
-    if (auteur.trim().length < 2 || typeof auteur !== 'string') {
-        return "l'auteur doit contenir au min 2 caractères";
-    }
-
-    if (isNaN(parseInt(category_id))) {
-        return "catégorie invalide";
-    }
-
-    return null;
-
-}
